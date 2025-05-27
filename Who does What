@@ -3,6 +3,7 @@ Write employment mechanics: annual unemployment check, weekly job-search rolls, 
 
 Creating ETF Modules
 
+#8 #9 and #10 on list
 
 Calvin:
 Implement the main monthly simulation loop (360 iterations) 12 months x 30 years
@@ -10,6 +11,8 @@ Implement the main monthly simulation loop (360 iterations) 12 months x 30 years
 Define and manage data structures that store income, expenses, assets, and liabilities
 
 Coordinate interactions between the home, renting, and ETF modules
+
+#6 and #7
 
 David:
 
@@ -19,4 +22,5 @@ Come up with inputs for "sample output log or screenshots (minimum 5 years of si
 
 John:
 
-Implement Taxes and other fees
+we add more things here
+
