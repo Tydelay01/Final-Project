@@ -1,16 +1,16 @@
 variables-
 
 bool employment (true/false)
-double annuel pre-tax income
-double home purchace price
-int down payment percent
-int loan term
-int morgage annuel intrest
-double property tax rate
-double annuel HOA cost
-double property tax rate
-double property sale tax
-double starting monthly rate
-double rent annuel inflation
-double etf annuel return
-int simulation duration 
+double annuel pre-tax income ($)
+double home purchace price ($)
+int down payment percent (%)
+int loan term (years/months)
+int morgage annuel intrest (%)
+double property tax rate (%)
+double annuel HOA cost ($)
+double property tax rate (%)
+double property sale tax (%) ONETIME
+double starting monthly rate ($)
+double rent annuel inflation (%)
+double etf annuel return (%)
+int simulation duration (months)
