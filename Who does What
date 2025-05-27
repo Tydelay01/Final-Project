@@ -1,0 +1,14 @@
+TY:
+
+Calvin:
+Implement the main monthly simulation loop (360 iterations) 12 months x 30 years
+
+Define and manage data structures that store income, expenses, assets, and liabilities
+
+Coordinate interactions between the home, renting, and ETF modules
+
+Write employment mechanics: annual unemployment check, weekly job-search rolls, and status tracking
+
+David:
+
+John:
