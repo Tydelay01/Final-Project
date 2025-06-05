@@ -3,3 +3,19 @@
 
 using namespace std;
 
+int main(){
+  cout<< "Choose Rneting and ETF or Morgage. 1 for Renting, 2 for Morgage" << endl;
+  cin >> x;
+  if( x==1){
+      RENTING
+  if (x==2){
+      MORGAGE
+  
+
+
+
+
+
+
+
+}
