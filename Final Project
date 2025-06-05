@@ -3,7 +3,22 @@
 
 using namespace std;
 
+
 int main(){
+  bool employment = true
+  double annuel_pre-tax_income = 0.00
+  double home_purchace_price = 0.00
+  int down_payment_percent = 0
+  int loan_term = 0
+  int morgage_annuel_intrest = 0
+  double property_tax_rate = 0.00
+  double annuel HOA cost = 0.00
+  double property_tax_rate = 0.00
+  double property_sale_tax = 0.00
+  double starting_monthly_rate = 0.00
+  double rent_annuel_inflation = 0.00
+  double etf_annuel_return = 0.00
+  int simulation_duration = 36
   cout<< "Choose Rneting and ETF or Morgage. 1 for Renting, 2 for Morgage" << endl;
   cin >> x;
   if( x==1){
