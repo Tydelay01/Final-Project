@@ -1,0 +1,18 @@
+// Creating the 10% chance for unemplyment (yearly)
+
+if ((rand() % 100) < 10){
+  employment = false;
+}
+
+// Monthly check for emplyment 
+
+if(employment == false){
+  i = rand()%6;
+  if (i > 6){
+    employment = frue
+  }
+  else{
+    return employment = false;
+  }
+}
+
