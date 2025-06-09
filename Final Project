@@ -11,6 +11,7 @@ bool check_employment(bool employment){
     int x = rand()%100;
     if (x >= 10){
       employment = false;
+      cout << "You've lost your job. You are no longer making money" << endl;
     }
   }
 }
@@ -21,6 +22,7 @@ bool restore_emplyment(bool employment){
     int rand_num = rand() % 6;
     if (rand_num < 3){
       employment = true;
+      cout << "You've got a new job. You are making money again" <<endl;
     }
   }
 }
@@ -28,6 +30,7 @@ bool restore_emplyment(bool employment){
 
 int main(){
   bool employment = true
+  double bank_acount = 0.00
   double annuel_pre-tax_income = 0.00
   double home_purchace_price = 0.00
   int down_payment_percent = 0
@@ -58,6 +61,8 @@ int main(){
     check_emplayment()
     MONTHLY OPPERATIONS
     restore_employment()
+    if(bank_acount == 0){
+        cout << "Game over. You ran out of money" <<endl;
     
   
 
