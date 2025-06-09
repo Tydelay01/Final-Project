@@ -59,10 +59,15 @@ int main(){
 
   for(int i=0, i<simulation_duration, i++){
     check_emplayment()
+
+// if employment if false then the income needs to be zero that month
+
     MONTHLY OPPERATIONS
     restore_employment()
     if(bank_acount == 0){
         cout << "Game over. You ran out of money" <<endl;
+        break;
+    }
     
   
 
