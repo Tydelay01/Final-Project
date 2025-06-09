@@ -41,14 +41,23 @@ int main(){
   double rent_annuel_inflation = 0.00
   double etf_annuel_return = 0.00
   int simulation_duration = 36
+
+// Choosing Morgage vs Renting
+
   cout<< "Choose Renting and ETF or Morgage. 1 for Renting, 2 for Mortgage" << endl;
   cin >> x;
-  if( x==1){
+  if(x == 1){
       RENTING
-  if (x==2){
+  if (x == 2){
       MORGAGE
+
+//this next section is the simulator, curently it runs 36 times
+
+
   for(int i=0, i<simulation_duration, i++){
     check_emplayment()
+    MONTHLY OPPERATIONS
+    restore_employment()
     
   
 
