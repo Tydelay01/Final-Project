@@ -19,7 +19,7 @@ int main(){
   double rent_annuel_inflation = 0.00
   double etf_annuel_return = 0.00
   int simulation_duration = 36
-  cout<< "Choose Rneting and ETF or Morgage. 1 for Renting, 2 for Morgage" << endl;
+  cout<< "Choose Renting and ETF or Morgage. 1 for Renting, 2 for Mortgage" << endl;
   cin >> x;
   if( x==1){
       RENTING
