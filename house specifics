@@ -1,0 +1,112 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+
+using namespace std;
+
+double string_to_double(string s, double& ref) {
+	ref = stod(s);
+
+return ref;
+}
+
+double get_home_price() {
+	string s;
+	cout << "Enter home price: " << endl;
+	cin >> s;
+	double home_price = string_to_double(s, home_price);
+
+return home_price;
+}
+
+double get_down_payment_ratio() {
+	string s;
+	cout << "Enter down payment ratio(percentage): " << endl;
+	cin >> s;
+	double down_payment_ratio = string_to_double(s, down_payment_ratio);
+	
+return down_payment_ratio;
+}
+
+int get_loan_term() {
+	string s;
+	cout << "Enter loan term(years): " << endl;
+	cin >> s;
+	int loan_term = stoi(s);
+
+return loan_term;
+}
+
+double get_annual_interest() {
+	string s;
+	cout << "Enter annual interest(percentage): " << endl;
+	cin >> s;
+	double annual_interest = string_to_double(s, annual_interest);
+
+return annual_interest;
+}
+
+double get_property_tax_rate() {
+	string s;
+	cout << "Enter property tax rate(percentage): " << endl;
+	cin >> s;
+	double property_tax_rate = string_to_double(s, property_tax_rate);
+	
+return property_tax_rate;
+}
+
+double get_HOA() {
+	string s;
+	cout << "Enter annual HOA cost: " << endl;
+	cin >> s;
+	double HOA = string_to_double(s, HOA);
+
+return HOA;
+} 
+
+double get_home_appreciation_rate() {
+	string s;
+	cout << "Enter home appreciation rate(percentage): " << endl;
+	cin >> s;
+	double home_appreciation_rate = string_to_double(s, home_appreciation_rate);
+
+return home_appreciation_rate;
+}
+
+double get_purchase_tax_rate() {
+	string s;
+	cout << "Enter purchase tax rate(percentage): " << endl;
+	cin >> s;
+	double purchase_tax_rate = string_to_double(s, purchase_tax_rate);
+
+return purchase_tax_rate;
+}
+
+double get_monthly_mortgage_payment(double p, double i, int n) {
+	double math = pow((1+i),n);
+	double monthly_mortgage_payment = (p*i*math)/(math-1);
+
+return monthly_mortgage_payment;
+}
+
+int main() {
+	double home_price = get_home_price();
+	double down_payment_ratio = get_down_payment_ratio();
+	double down_payment = home_price * (down_payment_ratio/100);
+	int loan_term = get_loan_term()*12;
+	double loan_amount = home_price - down_payment;
+	double monthly_interest = get_annual_interest()/1200;
+	double property_tax_rate = get_property_tax_rate()/100;
+	double HOA = get_HOA();
+//	double home_appreciation_rate = get_home_appreciation_rate();
+//	double purchase_tax = home_price * (get_purchase_tax_rate()/100);
+	double monthly_mortgage_payment = get_monthly_mortgage_payment(loan_amount, monthly_interest, loan_term);
+	double monthly_payment = monthly_mortgage_payment + ((property_tax_rate*home_price)/12) + HOA/12;
+	cout << monthly_payment << endl;
+	cout << home_price << endl;
+	cout << down_payment << endl;
+	cout << loan_amount << endl;
+	cout << loan_term << endl;
+	cout << ((property_tax_rate*home_price)/12) << endl;
+return 0;
+}
