@@ -394,6 +394,7 @@ vector<FinancialState> runSimulation(double monthlyIncome, bool employment) {
     restore_emplyment(employment);
     if (employment == true){
       monthlyIncome = monthlyIncome2;
+    }
     double cash = monthlyIncome;  // start with month-0 income
     double homeVal = 0.0;
     double etfVal = 0.0;
