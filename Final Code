@@ -474,7 +474,38 @@ int main() {
 
         cout << "Your monthly mortgage payment is: " << monthly_payment << endl;
 	cout << "The purchase tax amount is: " << purchase_tax << endl;
+   auto data = runSimulation(monthlyIncome, monthlyIncome2, employment);
 
+    // Print header
+    cout << left << setw(6) << "Month"
+         << setw(12) << "Income"
+         << setw(12) << "Expenses"
+         << setw(12) << "Cash"
+         << setw(12) << "HomeVal"
+         << setw(12) << "ETFVal"
+         << setw(12) << "NetWorth"
+         << endl;
+
+    // Print simulation results
+    for (int i = 0; i < 12; ++i) {
+        const auto &s = data[i];
+        if (bank_acount <= 100) {
+            forced_sell_etf(bank_acount, etf_value);
+            if (bank_acount == 0) {
+                cout << "You ran out of money. Game over." << endl;
+                return 0;
+            }
+        }
+        sell_etfs(bank_acount, etf_value);
+        cout << setw(6) << s.month
+             << setw(12) << s.income
+             << setw(12) << s.expenses
+             << setw(12) << s.netCash
+             << setw(12) << s.homeValue
+             << setw(12) << s.etfValue
+             << setw(12) << s.netWorth
+             << endl;
+    }
     }
 	if (decision == 1) {
     // ❗ Call simulation regardless of rent/buy decision
