@@ -189,8 +189,8 @@ double sell_etfs(double bank_acount, double etf_value){
 ** Postconditions
 *************************************************************/
 double forced_sell_etf(double bank_acount, double etf_value){
-  cout<< "Your bank acount is less than $100, so you are forced to sell some of your etfs" <<endl
-  int repeat = 0
+  cout<< "Your bank acount is less than $100, so you are forced to sell some of your etfs" <<endl;
+  int repeat = 0;
   do{
   cout<< "Sell for how much money" <<endl;
   doouble ideal_money_gained;
