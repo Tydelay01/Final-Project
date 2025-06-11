@@ -34,7 +34,7 @@ namespace HomeModule {
     // Process home ownership costs and updates
     // Parameters: current month index, reference to net cash flow and home value
     void processMonth(int month, double &netCash, double &homeValue) {
-        // Teammate will implement mortgage, taxes, HOA, appreciation, sale logic
+        // David will implement mortgage, taxes, HOA, appreciation, sale logic
     }
 }
 
