@@ -29,6 +29,56 @@ bool restore_emplyment(bool employment){
   }
 }
 
+// ETF Specifics, you have to option to sell, but can also be forced to sell
+
+double sell_etfs(double bank_acount, double etf_value){
+  cout<< "Sell ETFs?" <<endl;
+  int repeat = 0
+  do{
+  cout<< "Sell for how much money" <<endl;
+  doouble ideal_money_gained;
+  cin >> ideal_money_gained;
+  if (ideal_money_gained <= etf_holdings);
+    bank_acount += ideal_money_gained;
+    eft_value -= ideal_money_gained;
+    cout << "Youve gained $" << ideal_money gained << endl;
+    break;
+  else;
+    cout << "You dont have enough ETF Holdings to sell that" << endl;
+    break;
+  cout << "Do you want to sell more ETF" << endl;
+  cout <<" 0 for no, 1 for yes" << endl;
+  cin >> repeat
+  }while (repeat = 1)
+}
+
+// If bank acount less than 100.00  
+
+
+double forced_sell_etf(double bank_acount, double etf_value){
+  cout<< "Your bank acount is less than $100, so you are forced to sell some of your etfs" <<endl
+  int repeat = 0
+  do{
+  cout<< "Sell for how much money" <<endl;
+  doouble ideal_money_gained;
+  cin >> ideal_money_gained;
+  if (ideal_money_gained <= etf_value);
+    bank_acount += ideal_money_gained;
+    eft_value -= ideal_money_gained;
+    cout << "Youve gained $" << ideal_money gained << endl;
+    break;
+  else;
+    cout << "You dont have enough ETF Holdings to sell that" << endl;
+    break;
+  cout << "Do you want to sell more ETF" << endl;
+  cout <<" 0 for no, 1 for yes" << endl;
+  cin >> repeat
+  }while (repeat = 1)
+}
+
+
+
+
 // Placeholder namespaces for teammates' modules
 namespace HomeModule {
     // Process home ownership costs and updates
