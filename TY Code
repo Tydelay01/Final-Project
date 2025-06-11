@@ -20,10 +20,43 @@ if(employment == false){
 
 double sell_etfs(){
   cout<< "Sell ETFs?" <<endl;
+  int repeat = 0
+  do{
   cout<< "Sell for how much money" <<endl;
   doouble ideal_money_gained;
   cin >> ideal_money_gained;
   if (ideal_money_gained <= etf_holdings);
     bank_acount += ideal_money_gained;
     eft_holding -= ideal_money_gained;
-  else
+    cout << "Youve gained $" << ideal_money gained << endl;
+    break;
+  else;
+    cout << "You dont have enough ETF Holdings to sell that" << endl;
+    break;
+  cout << "Do you want to sell more ETF" << endl;
+  cout <<" 0 for no, 1 for yes" << endl;
+  cin >> repeat
+  }while (repeat = 1)
+}
+
+double forced_sell_etf(){
+  cout<< "Your bank acount is less than $100, so you are forced to sell some of your etfs" <<endl
+  int repeat = 0
+  do{
+  cout<< "Sell for how much money" <<endl;
+  doouble ideal_money_gained;
+  cin >> ideal_money_gained;
+  if (ideal_money_gained <= etf_holdings);
+    bank_acount += ideal_money_gained;
+    eft_holding -= ideal_money_gained;
+    cout << "Youve gained $" << ideal_money gained << endl;
+    break;
+  else;
+    cout << "You dont have enough ETF Holdings to sell that" << endl;
+    break;
+  cout << "Do you want to sell more ETF" << endl;
+  cout <<" 0 for no, 1 for yes" << endl;
+  cin >> repeat
+  }while (repeat = 1)
+}
+
