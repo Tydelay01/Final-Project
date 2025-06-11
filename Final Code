@@ -471,12 +471,8 @@ int main() {
         double monthly_mortgage_payment = get_monthly_mortgage_payment(loan_amount, monthly_interest, loan_term);
         double monthly_payment = monthly_mortgage_payment + ((property_tax_rate * home_price) / 12) + HOA / 12;
 
-        cout << monthly_payment << endl;
-        cout << home_price << endl;
-        cout << down_payment << endl;
-        cout << loan_amount << endl;
-        cout << loan_term << endl;
-        cout << ((property_tax_rate * home_price) / 12) << endl;
+        cout << "Your monthly mortgage payment is: " << monthly_payment << endl;
+
     }
 
     // ❗ Call simulation regardless of rent/buy decision
