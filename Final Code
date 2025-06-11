@@ -207,7 +207,7 @@ double forced_sell_etf(double bank_acount, double etf_value){
   }
   cout << "Do you want to sell more ETF" << endl;
   cout <<" 0 for no, 1 for yes" << endl;
-  cin >> repeat
+  cin >> repeat;
   }while (repeat = 1);
 }
 
