@@ -1,0 +1,114 @@
+#include <iostream>
+#include <vector>
+#include <iomanip>  // for formatting
+
+// Placeholder namespaces for teammates' modules
+namespace HomeModule {
+    // Process home ownership costs and updates
+    // Parameters: current month index, reference to net cash flow and home value
+    void processMonth(int month, double &netCash, double &homeValue) {
+        // Teammate will implement mortgage, taxes, HOA, appreciation, sale logic
+    }
+}
+
+namespace InvestModule {
+    // Process renting costs and investment updates
+    // Parameters: current month index, reference to net cash flow and ETF value
+    void processMonth(int month, double &netCash, double &etfValue) {
+        // Teammate will implement rent, investing surplus, returns, liquidity
+    }
+}
+
+// Structure to hold the financial state for one month
+struct FinancialState {
+    int month;           // Month index (0 to 359)
+    double income;       // Monthly income after taxes
+    double expenses;     // Total housing costs (mortgage or rent)
+    double netCash;      // Cash remaining after income minus expenses
+    double homeValue;    // Value of the home if owned
+    double etfValue;     // Value of ETF investments if renting path
+    double netWorth;     // Net worth = homeValue + etfValue + netCash
+};
+
+// Main simulation function
+std::vector<FinancialState> runSimulation(double monthlyIncome) {
+    const int totalMonths = 360;  // 30 years x 12 months
+    std::vector<FinancialState> history;
+    history.reserve(totalMonths);
+
+    // Initialize starting values
+    double cash = monthlyIncome;  // start with month-0 income
+    double homeVal = 0.0;
+    double etfVal = 0.0;
+
+    // Loop through each month
+    for (int m = 0; m < totalMonths; ++m) {
+        FinancialState state;
+        state.month = m;
+
+        // Income stays constant here; salary growth module could update monthlyIncome externally
+        state.income = monthlyIncome;
+
+        // Reset expenses for this month
+        state.expenses = 0.0;
+
+        // Copy current cash to calculate net cash after modules
+        double netCash = cash;
+
+        // Call home ownership logic (mortgage, taxes, HOA, appreciation/sale)
+        HomeModule::processMonth(m, netCash, homeVal);
+
+        // Call renting/investment logic (rent, invest, returns, liquidity)
+        InvestModule::processMonth(m, netCash, etfVal);
+
+        // Update cash on hand
+        cash = netCash;
+
+        // Populate state fields
+        state.expenses = state.income - netCash;
+        state.netCash = netCash;
+        state.homeValue = homeVal;
+        state.etfValue = etfVal;
+        state.netWorth = homeVal + etfVal + netCash;
+
+        // Store this month’s state
+        history.push_back(state);
+    }
+
+    return history;
+}
+
+int main() {
+    // Example usage: assume $5,000 monthly income (adjustable)
+    double monthlyIncome = 5000.0;
+
+    // Run the simulation
+    auto data = runSimulation(monthlyIncome);
+
+    // Print a header
+    std::cout << std::left << std::setw(6) << "Month"
+              << std::setw(12) << "Income"
+              << std::setw(12) << "Expenses"
+              << std::setw(12) << "Cash"
+              << std::setw(12) << "HomeVal"
+              << std::setw(12) << "ETFVal"
+              << std::setw(12) << "NetWorth"
+              << '
+';
+
+    // Print the first few months as a sample
+    for (int i = 0; i < 12; ++i) {
+        const auto &s = data[i];
+        std::cout << std::setw(6) << s.month
+                  << std::setw(12) << s.income
+                  << std::setw(12) << s.expenses
+                  << std::setw(12) << s.netCash
+                  << std::setw(12) << s.homeValue
+                  << std::setw(12) << s.etfValue
+                  << std::setw(12) << s.netWorth
+                  << '
+';
+    }
+
+    return 0;
+}
