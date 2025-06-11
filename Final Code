@@ -498,6 +498,9 @@ if (decision == 2) {
 ** Postconditions
 *************************************************************/
  if (decision == 1) {
+double bank_acount = 1000;
+bool employment = true;
+double etf_value = 1000;
 for (int i = 0; i < 12; ++i) {
         const auto &s = data[i];
         if(bank_acount <= 100){
