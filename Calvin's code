@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <iomanip>  // for formatting
+#include<cstdlib>
+#include<ctime>
 
 // Placeholder namespaces for teammates' modules
 namespace HomeModule {
