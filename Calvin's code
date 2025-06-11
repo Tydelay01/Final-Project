@@ -132,6 +132,9 @@ int main() {
         const auto &s = data[i];
         if(bank_acount <= 100){
           forced_sell_etf(bank_acount, etf_value)
+            if (bank_acount <= 100){
+              cout << "You ran out of money game over' << endl
+              exit;
         }
         sell_etf(bank_acount, etf_value)
         cout << std::setw(6) << s.month
