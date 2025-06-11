@@ -323,6 +323,7 @@ double forced_sell_etf(double bank_acount, double etf_value){
   cout <<" 0 for no, 1 for yes" << endl;
   cin >> repeat;
   }while (repeat = 1);
+  return bank_acount, etf_value;
 }
 
 
