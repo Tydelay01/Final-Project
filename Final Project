@@ -58,7 +58,7 @@ int main(){
 
 
   for(int i=0, i<simulation_duration, i++){
-    check_emplayment()
+    check_employment()
 
 // if employment if false then the income needs to be zero that month
 
