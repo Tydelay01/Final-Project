@@ -448,6 +448,11 @@ vector<FinancialState> runSimulation(double monthlyIncome, double monthlyIncome2
 ** Postconditions
 *************************************************************/
 int main() {
+
+int decision;
+cout << "Would you like to rent or buy a house? (1 for rent, 2 to buy)" << endl;
+cin >> decision;
+if (decision == 2) {
 	double bank_acount = 1000;
         bool employment = true;
 	double etf_value = 1000;
@@ -484,7 +489,7 @@ int main() {
               << setw(12) << "ETFVal"
               << setw(12) << "NetWorth"
 ;
-
+}
     // Print the first few months as a sample
 /*************************************************************
 ** Description:
@@ -492,7 +497,8 @@ int main() {
 ** Preconditions:
 ** Postconditions
 *************************************************************/
-    for (int i = 0; i < 12; ++i) {
+ if (decision == 2) {
+for (int i = 0; i < 12; ++i) {
         const auto &s = data[i];
         if(bank_acount <= 100){
           forced_sell_etf(bank_acount, etf_value);
@@ -511,6 +517,6 @@ int main() {
                   << setw(12) << s.netWorth
 ;
     }
-
+}
     return 0;
 }
