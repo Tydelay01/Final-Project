@@ -21,6 +21,8 @@ compound growth, invest bank balance into ETF, update home value, and record/sto
 
 using namespace std;
 
+srand(time(NULL));
+
 int get_value(char character) {
 	switch(character) {
 		case '0': return 1;
