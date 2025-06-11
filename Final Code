@@ -381,14 +381,14 @@ struct FinancialState {
 ** Preconditions:
 ** Postconditions
 *************************************************************/
-vector<FinancialState> runSimulation(double monthlyIncome) {
+vector<FinancialState> runSimulation(double monthlyIncome, bool employment) {
     const int totalMonths = 360;  // 30 years x 12 months
     vector<FinancialState> history;
     history.reserve(totalMonths);
 
     // Initialize starting values
     check_employment(employment);
-    if (employment == False){
+    if (employment == false){
       monthly_income = 0;
     }
     restore_emplyment(emplyment);
