@@ -495,7 +495,7 @@ int main() {
     for (int i = 0; i < 12; ++i) {
         const auto &s = data[i];
         if(bank_acount <= 100){
-          forced_sell_etf(bank_acount, etf_value)
+          forced_sell_etf(bank_acount, etf_value);
             if (bank_acount == 0) {
               cout << "You ran out of money game over" << endl
               exit;
