@@ -20,7 +20,7 @@ bool restore_emplyment(bool employment){
   }
 }
 
-// ETF Specifics
+// ETF Specifics, you have to option to sell, but can also be forced to sell
 
 double sell_etfs(double bank_acount, double etf_value){
   cout<< "Sell ETFs?" <<endl;
