@@ -3,6 +3,8 @@
 #include <iomanip>  // for formatting
 #include<cstdlib>
 #include<ctime>
+#using namespace std;
+
 
 
 
@@ -35,9 +37,9 @@ struct FinancialState {
 };
 
 // Main simulation function
-std::vector<FinancialState> runSimulation(double monthlyIncome) {
+vector<FinancialState> runSimulation(double monthlyIncome) {
     const int totalMonths = 360;  // 30 years x 12 months
-    std::vector<FinancialState> history;
+    vector<FinancialState> history;
     history.reserve(totalMonths);
 
     // Initialize starting values
@@ -90,26 +92,26 @@ int main() {
     auto data = runSimulation(monthlyIncome);
 
     // Print a header
-    std::cout << std::left << std::setw(6) << "Month"
-              << std::setw(12) << "Income"
-              << std::setw(12) << "Expenses"
-              << std::setw(12) << "Cash"
-              << std::setw(12) << "HomeVal"
-              << std::setw(12) << "ETFVal"
-              << std::setw(12) << "NetWorth"
+    cout << left << setw(6) << "Month"
+              << setw(12) << "Income"
+              << setw(12) << "Expenses"
+              << setw(12) << "Cash"
+              << setw(12) << "HomeVal"
+              << setw(12) << "ETFVal"
+              << setw(12) << "NetWorth"
               << '
 ';
 
     // Print the first few months as a sample
     for (int i = 0; i < 12; ++i) {
         const auto &s = data[i];
-        std::cout << std::setw(6) << s.month
-                  << std::setw(12) << s.income
-                  << std::setw(12) << s.expenses
-                  << std::setw(12) << s.netCash
-                  << std::setw(12) << s.homeValue
-                  << std::setw(12) << s.etfValue
-                  << std::setw(12) << s.netWorth
+        cout << std::setw(6) << s.month
+                  << setw(12) << s.income
+                  << setw(12) << s.expenses
+                  << setw(12) << s.netCash
+                  << setw(12) << s.homeValue
+                  << setw(12) << s.etfValue
+                  << setw(12) << s.netWorth
                   << '
 ';
     }
