@@ -200,9 +200,11 @@ double forced_sell_etf(double bank_acount, double etf_value){
     etf_value -= ideal_money_gained;
     cout << "Youve gained $" << ideal_money_gained << endl;
     break;
-  else;
+  }
+  else{
     cout << "You dont have enough ETF Holdings to sell that" << endl;
     break;
+  }
   cout << "Do you want to sell more ETF" << endl;
   cout <<" 0 for no, 1 for yes" << endl;
   cin >> repeat
