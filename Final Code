@@ -5,6 +5,94 @@
 #include<ctime>
 #using namespace std;
 
+
+double string_to_double(string s, double& ref) {
+	ref = stod(s);
+
+return ref;
+}
+
+double get_home_price() {
+	string s;
+	cout << "Enter home price: " << endl;
+	cin >> s;
+	double home_price = string_to_double(s, home_price);
+
+return home_price;
+}
+
+double get_down_payment_ratio() {
+	string s;
+	cout << "Enter down payment ratio(percentage): " << endl;
+	cin >> s;
+	double down_payment_ratio = string_to_double(s, down_payment_ratio);
+	
+return down_payment_ratio;
+}
+
+int get_loan_term() {
+	string s;
+	cout << "Enter loan term(years): " << endl;
+	cin >> s;
+	int loan_term = stoi(s);
+
+return loan_term;
+}
+
+double get_annual_interest() {
+	string s;
+	cout << "Enter annual interest(percentage): " << endl;
+	cin >> s;
+	double annual_interest = string_to_double(s, annual_interest);
+
+return annual_interest;
+}
+
+double get_property_tax_rate() {
+	string s;
+	cout << "Enter property tax rate(percentage): " << endl;
+	cin >> s;
+	double property_tax_rate = string_to_double(s, property_tax_rate);
+	
+return property_tax_rate;
+}
+
+double get_HOA() {
+	string s;
+	cout << "Enter annual HOA cost: " << endl;
+	cin >> s;
+	double HOA = string_to_double(s, HOA);
+
+return HOA;
+} 
+
+double get_home_appreciation_rate() {
+	string s;
+	cout << "Enter home appreciation rate(percentage): " << endl;
+	cin >> s;
+	double home_appreciation_rate = string_to_double(s, home_appreciation_rate);
+
+return home_appreciation_rate;
+}
+
+double get_purchase_tax_rate() {
+	string s;
+	cout << "Enter purchase tax rate(percentage): " << endl;
+	cin >> s;
+	double purchase_tax_rate = string_to_double(s, purchase_tax_rate);
+
+return purchase_tax_rate;
+}
+
+double get_monthly_mortgage_payment(double p, double i, int n) {
+	double math = pow((1+i),n);
+	double monthly_mortgage_payment = (p*i*math)/(math-1);
+
+return monthly_mortgage_payment;
+
+
+
+
 // Employment Fuctions, that happen monthly
 
 bool check_employment(bool employment){
