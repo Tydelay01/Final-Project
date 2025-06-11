@@ -1,0 +1,147 @@
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+#include <vector>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+// Struct to hold the financial state
+struct FinancialState {
+    double bank;
+    double homeValue;
+    double mortgageRemaining;
+    double etfBalance;
+    double rent;
+    double income;
+    bool isEmployed;
+    bool ownsHome;
+};
+
+// Calculates the fixed monthly mortgage payment
+double calculateMonthlyMortgage(double loanAmount, double annualInterestRate, int years) {
+    double monthlyRate = annualInterestRate / 12.0;
+    int months = years * 12;
+    return loanAmount * (monthlyRate * pow(1 + monthlyRate, months)) / (pow(1 + monthlyRate, months) - 1);
+}
+
+// Applies a fluctuation to a base rate
+double fluctuate(double baseRate, double volatilityPercent) {
+    double fluctuation = ((rand() % 2001) - 1000) / 1000.0; // [-1, 1]
+    return baseRate + fluctuation * volatilityPercent;
+}
+
+// Calculates the monthly return from ETF investments
+double calculateETFReturn(double currentETF, double baseAnnualReturn, double volatilityPercent) {
+    double monthlyReturn = fluctuate(baseAnnualReturn, volatilityPercent) / 12.0;
+    return currentETF * monthlyReturn;
+}
+
+// Unemployment is triggered with a 10% annual probability
+bool triggerUnemployment(double probability = 0.1) {
+    return ((rand() % 10000) < static_cast<int>(probability * 10000));
+}
+
+// Attempt to reemploy via 4 weekly die rolls
+bool attemptReemployment() {
+    for (int i = 0; i < 4; ++i) {
+        if ((rand() % 6 + 1) > 3) return true;
+    }
+    return false;
+}
+
+// Performs all monthly updates and prints status
+void simulateMonth(FinancialState &state, double mortgagePayment, double propertyTax, double hoaMonthly,
+                   double rent, double etfReturnRate, double etfVolatility, double investmentAmount,
+                   int month, int year) {
+
+    double income = state.isEmployed ? state.income : 0.0;
+    state.bank += income;
+
+    if (state.ownsHome) {
+        state.bank -= mortgagePayment;
+        state.bank -= propertyTax;
+        state.bank -= hoaMonthly;
+
+        if (state.mortgageRemaining > 0) {
+            double interestPart = state.mortgageRemaining * (etfReturnRate / 12.0);
+            state.mortgageRemaining -= (mortgagePayment - interestPart);
+        }
+
+        state.homeValue *= (1 + fluctuate(0.04, 0.02) / 12.0);
+    } else {
+        state.bank -= rent;
+    }
+
+    if (investmentAmount > 0 && state.bank >= investmentAmount) {
+        state.bank -= investmentAmount;
+        state.etfBalance += investmentAmount;
+    }
+
+    state.etfBalance += calculateETFReturn(state.etfBalance, etfReturnRate, etfVolatility);
+
+    if (state.bank < 500) {
+        double needed = 1000 - state.bank;
+        double toSell = min(needed, state.etfBalance);
+        state.etfBalance -= toSell;
+        state.bank += toSell * 0.995; // 0.5% fee
+    }
+
+    cout << fixed << setprecision(2);
+    cout << "Year " << year << ", Month " << month << endl;
+    cout << "Income: $" << income << " | Employed: " << (state.isEmployed ? "Yes" : "No") << endl;
+    cout << "Bank: $" << state.bank << " | ETF: $" << state.etfBalance;
+    if (state.ownsHome)
+        cout << " | Home Value: $" << state.homeValue << " | Mortgage Left: $" << state.mortgageRemaining;
+    cout << "\n\n";
+}
+
+int main() {
+    srand(time(0));
+
+    FinancialState state;
+    state.bank = 0;
+    state.etfBalance = 0;
+    state.homeValue = 600000;
+    state.mortgageRemaining = 480000; // 80% loan
+    state.ownsHome = true; // switch to false if renting
+    state.income = 90000 / 12.0 * 0.7; // assume 30% tax
+    state.isEmployed = true;
+    state.rent = 2000;
+
+    double mortgagePayment = calculateMonthlyMortgage(480000, 0.05, 30);
+    double propertyTax = 600000 * 0.012 / 12.0;
+    double hoaMonthly = 3000.0 / 12.0;
+    double etfReturnRate = 0.07;
+    double etfVolatility = 0.02;
+
+    vector<double> netWorths;
+
+    for (int year = 1; year <= 30; ++year) {
+        if (triggerUnemployment()) state.isEmployed = false;
+
+        for (int month = 1; month <= 12; ++month) {
+            if (!state.isEmployed) state.isEmployed = attemptReemployment();
+
+            simulateMonth(state, mortgagePayment, propertyTax, hoaMonthly,
+                          state.rent, etfReturnRate, etfVolatility, 1000, month, year);
+
+            if (state.bank <= 0 && !state.isEmployed) {
+                cout << "Bankrupt and unemployed. Game Over.\n";
+                return 0;
+            }
+        }
+
+        double netWorth = state.bank + state.etfBalance + (state.ownsHome ? state.homeValue - state.mortgageRemaining : 0);
+        netWorths.push_back(netWorth);
+        state.income *= 1.05; // income grows
+        state.rent *= 1.02;   // rent inflates
+    }
+
+    cout << "\nAnnual Net Worth:\n";
+    for (int i = 0; i < netWorths.size(); ++i) {
+        cout << "Year " << (i + 1) << ": $" << fixed << setprecision(2) << netWorths[i] << "\n";
+    }
+
+    return 0;
+}
