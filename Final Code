@@ -448,78 +448,70 @@ vector<FinancialState> runSimulation(double monthlyIncome, double monthlyIncome2
 ** Postconditions
 *************************************************************/
 int main() {
+    int decision;
+    cout << "Would you like to rent or buy a house? (1 for rent, 2 to buy)" << endl;
+    cin >> decision;
 
-int decision;
-cout << "Would you like to rent or buy a house? (1 for rent, 2 to buy)" << endl;
-cin >> decision;
-if (decision == 2) {
-	double bank_acount = 1000;
-        bool employment = true;
-	double etf_value = 1000;
-    	double home_price = get_home_price();
-  	double down_payment_ratio = get_down_payment_ratio();
-  	double down_payment = home_price * (down_payment_ratio/100);
-	int loan_term = get_loan_term()*12;
-	double loan_amount = home_price - down_payment;
-	double monthly_interest = get_annual_interest()/1200;
-	double property_tax_rate = get_property_tax_rate()/100;
-	double HOA = get_HOA();
-//	double home_appreciation_rate = get_home_appreciation_rate();
-        double purchase_tax = home_price * (get_purchase_tax_rate()/100);
-  	double monthly_mortgage_payment = get_monthly_mortgage_payment(loan_amount, monthly_interest, loan_term);
-  	double monthly_payment = monthly_mortgage_payment + ((property_tax_rate*home_price)/12) + HOA/12;
-	cout << monthly_payment << endl;
-	cout << home_price << endl;
-	cout << down_payment << endl;
-	cout << loan_amount << endl;
-	cout << loan_term << endl;
-	cout << ((property_tax_rate*home_price)/12) << endl;// Example usage: assume $5,000 monthly income (adjustable)
-    	double monthlyIncome = 5000.0;
-	double monthlyIncome2 = monthlyIncome;
+    double bank_acount = 1000;
+    bool employment = true;
+    double etf_value = 1000;
+    double monthlyIncome = 5000.0;
+    double monthlyIncome2 = monthlyIncome;
 
-    // Run the simulation
+    if (decision == 2) {
+        double home_price = get_home_price();
+        double down_payment_ratio = get_down_payment_ratio();
+        double down_payment = home_price * (down_payment_ratio / 100);
+        int loan_term = get_loan_term() * 12;
+        double loan_amount = home_price - down_payment;
+        double monthly_interest = get_annual_interest() / 1200;
+        double property_tax_rate = get_property_tax_rate() / 100;
+        double HOA = get_HOA();
+        double purchase_tax = home_price * (get_purchase_tax_rate() / 100);
+        double monthly_mortgage_payment = get_monthly_mortgage_payment(loan_amount, monthly_interest, loan_term);
+        double monthly_payment = monthly_mortgage_payment + ((property_tax_rate * home_price) / 12) + HOA / 12;
+
+        cout << monthly_payment << endl;
+        cout << home_price << endl;
+        cout << down_payment << endl;
+        cout << loan_amount << endl;
+        cout << loan_term << endl;
+        cout << ((property_tax_rate * home_price) / 12) << endl;
+    }
+
+    // ❗ Call simulation regardless of rent/buy decision
     auto data = runSimulation(monthlyIncome, monthlyIncome2, employment);
 
-    // Print a header
+    // Print header
     cout << left << setw(6) << "Month"
-              << setw(12) << "Income"
-              << setw(12) << "Expenses"
-              << setw(12) << "Cash"
-              << setw(12) << "HomeVal"
-              << setw(12) << "ETFVal"
-              << setw(12) << "NetWorth"
-;
-}
-    // Print the first few months as a sample
-/*************************************************************
-** Description:
-** Function: 
-** Preconditions:
-** Postconditions
-*************************************************************/
- if (decision == 1) {
-double bank_acount = 1000;
-bool employment = true;
-double etf_value = 1000;
-for (int i = 0; i < 12; ++i) {
+         << setw(12) << "Income"
+         << setw(12) << "Expenses"
+         << setw(12) << "Cash"
+         << setw(12) << "HomeVal"
+         << setw(12) << "ETFVal"
+         << setw(12) << "NetWorth"
+         << endl;
+
+    // Print simulation results
+    for (int i = 0; i < 12; ++i) {
         const auto &s = data[i];
-        if(bank_acount <= 100){
-          forced_sell_etf(bank_acount, etf_value);
+        if (bank_acount <= 100) {
+            forced_sell_etf(bank_acount, etf_value);
             if (bank_acount == 0) {
-              cout << "You ran out of money game over" << endl;
-              exit;
-	    }
+                cout << "You ran out of money. Game over." << endl;
+                return 0;
+            }
         }
         sell_etfs(bank_acount, etf_value);
         cout << setw(6) << s.month
-                  << setw(12) << s.income
-                  << setw(12) << s.expenses
-                  << setw(12) << s.netCash
-                  << setw(12) << s.homeValue
-                  << setw(12) << s.etfValue
-                  << setw(12) << s.netWorth
-;
+             << setw(12) << s.income
+             << setw(12) << s.expenses
+             << setw(12) << s.netCash
+             << setw(12) << s.homeValue
+             << setw(12) << s.etfValue
+             << setw(12) << s.netWorth
+             << endl;
     }
-}
+
     return 0;
 }
