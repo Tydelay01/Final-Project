@@ -100,10 +100,10 @@ return 1;
 } 
 
 /*************************************************************
-** Description: Return a numeric code representing character type (digit, sign, decimal point).
-** Function:    get_value
-** Preconditions: character is any valid ASCII character.
-** Postconditions: Returns 1 for digit, 2 for '-', 3 for '.', else 0.
+** Description: Convert a validated numeric string to double.
+** Function:    string_to_double
+** Preconditions: s represents a valid integer or float literal.
+** Postconditions: Sets ref to the parsed value and returns it.
 *************************************************************/
 double string_to_double(string s, double& ref) {
 	ref = stod(s);
@@ -226,10 +226,10 @@ return monthly_mortgage_payment;
 }
 
 /*************************************************************
-** Description: Function to check the probability of the user being employed.
-** Function: 
-** Preconditions:
-** Postconditions
+** Description: Randomly determine if employment is lost (10% chance).
+** Function:    check_employment
+** Preconditions: employment indicates current job status.
+** Postconditions: Returns false if job is lost, else original status.
 *************************************************************/
 
 // Employment Fuctions, that happen monthly
@@ -246,10 +246,10 @@ bool check_employment(bool employment){
     return employment;
 }
 /*************************************************************
-** Description:
-** Function: 
-** Preconditions:
-** Postconditions
+** Description: Attempt weekly to regain employment (50% chance per roll).
+** Function:    restore_employment
+** Preconditions: employment == false.
+** Postconditions: Returns true if re-employed, else false.
 *************************************************************/
 bool restore_emplyment(bool employment){
   if(employment == false){
@@ -265,10 +265,10 @@ bool restore_emplyment(bool employment){
 
 // ETF Specifics, you have to option to sell, but can also be forced to sell
 /*************************************************************
-** Description:
-** Function: 
-** Preconditions:
-** Postconditions
+** Description: Prompt the user to sell a specified amount of ETFs.
+** Function:    sell_etfs
+** Preconditions: bank_account and etf_value >= 0.
+** Postconditions: Deducts etf_value and adds to bank_account if valid.
 *************************************************************/
 double sell_etfs(double bank_acount, double etf_value){
   cout<< "Sell ETFs?" <<endl;
@@ -297,10 +297,10 @@ double sell_etfs(double bank_acount, double etf_value){
 // If bank acount less than 100.00  
 
 /*************************************************************
-** Description:
-** Function: 
-** Preconditions:
-** Postconditions
+** Description: Force ETF sale when cash on hand is below threshold.
+** Function:    forced_sell_etf
+** Preconditions: bank_account < threshold, etf_value >= 0.
+** Postconditions: Deducts etf_value and adds to bank_account.
 *************************************************************/
 double forced_sell_etf(double bank_acount, double etf_value){
   cout<< "Your bank acount is less than $100, so you are forced to sell some of your etfs" <<endl;
@@ -331,10 +331,10 @@ double forced_sell_etf(double bank_acount, double etf_value){
 
 // Placeholder namespaces for teammates' modules
 /*************************************************************
-** Description:
-** Function: 
-** Preconditions:
-** Postconditions
+** Description: Process one month of home ownership updates.
+** Function:    HomeModule::processMonth
+** Preconditions: month >= 0; netCash and homeValue passed by reference.
+** Postconditions: Updates netCash and homeValue for that month.
 *************************************************************/
 namespace HomeModule {
     // Process home ownership costs and updates
@@ -344,10 +344,10 @@ namespace HomeModule {
     }
 }
 /*************************************************************
-** Description:
-** Function: 
-** Preconditions:
-** Postconditions
+** Description: Process one month of renting and investment updates.
+** Function:    InvestModule::processMonth
+** Preconditions: month >= 0; netCash and etfValue passed by reference.
+** Postconditions: Updates netCash and etfValue for that month.
 *************************************************************/
 namespace InvestModule {
     // Process renting costs and investment updates
@@ -359,10 +359,10 @@ namespace InvestModule {
 
 // Structure to hold the financial state for one month
 /*************************************************************
-** Description:
-** Function: 
-** Preconditions:
-** Postconditions
+** Description: Data structure to hold monthly financial metrics.
+** Function:    struct FinancialState
+** Preconditions: Fields should be assigned before use.
+** Postconditions: Represents a complete financial snapshot for one month.
 *************************************************************/
 struct FinancialState {
     int month;           // Month index (0 to 359)
@@ -376,10 +376,10 @@ struct FinancialState {
 
 // Main simulation function
 /*************************************************************
-** Description:
-** Function: 
-** Preconditions:
-** Postconditions
+** Description: Run the 360-month financial simulation.
+** Function:    runSimulation
+** Preconditions: monthlyIncome >= 0.
+** Postconditions: Returns a vector of FinancialState for each month.
 *************************************************************/
 vector<FinancialState> runSimulation(double monthlyIncome, double monthlyIncome2, bool employment) {
     const int totalMonths = 360;  // 30 years x 12 months
