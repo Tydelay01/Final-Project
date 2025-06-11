@@ -198,7 +198,7 @@ double forced_sell_etf(double bank_acount, double etf_value){
   if (ideal_money_gained <= etf_value);
     bank_acount += ideal_money_gained;
     etf_value -= ideal_money_gained;
-    cout << "Youve gained $" << ideal_money gained << endl;
+    cout << "Youve gained $" << ideal_money_gained << endl;
     break;
   else;
     cout << "You dont have enough ETF Holdings to sell that" << endl;
