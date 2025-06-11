@@ -20,7 +20,12 @@ compound growth, invest bank balance into ETF, update home value, and record/sto
 
 using namespace std;
 
-
+/*************************************************************
+** Description:
+** Function: 
+** Preconditions:
+** Postconditions
+*************************************************************/
 double string_to_double(string s, double& ref) {
 	ref = stod(s);
 
@@ -106,7 +111,12 @@ double get_monthly_mortgage_payment(double p, double i, int n) {
 return monthly_mortgage_payment;
 }
 
-
+/*************************************************************
+** Description:
+** Function: 
+** Preconditions:
+** Postconditions
+*************************************************************/
 
 // Employment Fuctions, that happen monthly
 
@@ -121,7 +131,12 @@ bool check_employment(bool employment){
   }
     return employment;
 }
-
+/*************************************************************
+** Description:
+** Function: 
+** Preconditions:
+** Postconditions
+*************************************************************/
 bool restore_emplyment(bool employment){
   if(employment == false){
     srand(time(0));
@@ -135,7 +150,12 @@ bool restore_emplyment(bool employment){
 }
 
 // ETF Specifics, you have to option to sell, but can also be forced to sell
-
+/*************************************************************
+** Description:
+** Function: 
+** Preconditions:
+** Postconditions
+*************************************************************/
 double sell_etfs(double bank_acount, double etf_value){
   cout<< "Sell ETFs?" <<endl;
   int repeat = 0;
@@ -159,7 +179,12 @@ double sell_etfs(double bank_acount, double etf_value){
 
 // If bank acount less than 100.00  
 
-
+/*************************************************************
+** Description:
+** Function: 
+** Preconditions:
+** Postconditions
+*************************************************************/
 double forced_sell_etf(double bank_acount, double etf_value){
   cout<< "Your bank acount is less than $100, so you are forced to sell some of your etfs" <<endl
   int repeat = 0
@@ -185,6 +210,12 @@ double forced_sell_etf(double bank_acount, double etf_value){
 
 
 // Placeholder namespaces for teammates' modules
+/*************************************************************
+** Description:
+** Function: 
+** Preconditions:
+** Postconditions
+*************************************************************/
 namespace HomeModule {
     // Process home ownership costs and updates
     // Parameters: current month index, reference to net cash flow and home value
@@ -192,7 +223,12 @@ namespace HomeModule {
         // David will implement mortgage, taxes, HOA, appreciation, sale logic
     }
 }
-
+/*************************************************************
+** Description:
+** Function: 
+** Preconditions:
+** Postconditions
+*************************************************************/
 namespace InvestModule {
     // Process renting costs and investment updates
     // Parameters: current month index, reference to net cash flow and ETF value
@@ -202,6 +238,12 @@ namespace InvestModule {
 }
 
 // Structure to hold the financial state for one month
+/*************************************************************
+** Description:
+** Function: 
+** Preconditions:
+** Postconditions
+*************************************************************/
 struct FinancialState {
     int month;           // Month index (0 to 359)
     double income;       // Monthly income after taxes
@@ -213,6 +255,12 @@ struct FinancialState {
 };
 
 // Main simulation function
+/*************************************************************
+** Description:
+** Function: 
+** Preconditions:
+** Postconditions
+*************************************************************/
 vector<FinancialState> runSimulation(double monthlyIncome) {
     const int totalMonths = 360;  // 30 years x 12 months
     vector<FinancialState> history;
@@ -236,6 +284,12 @@ vector<FinancialState> runSimulation(double monthlyIncome) {
         state.month = m;
 
         // Income stays constant here; salary growth module could update monthlyIncome externally
+/*************************************************************
+** Description:
+** Function: 
+** Preconditions:
+** Postconditions
+*************************************************************/
         state.income = monthlyIncome;
 
         // Reset expenses for this month
@@ -266,7 +320,12 @@ vector<FinancialState> runSimulation(double monthlyIncome) {
 
     return history;
 }
-
+/*************************************************************
+** Description:
+** Function: 
+** Preconditions:
+** Postconditions
+*************************************************************/
 int main() {
     
     double home_price = get_home_price();
@@ -303,6 +362,12 @@ int main() {
 ;
 
     // Print the first few months as a sample
+/*************************************************************
+** Description:
+** Function: 
+** Preconditions:
+** Postconditions
+*************************************************************/
     for (int i = 0; i < 12; ++i) {
         const auto &s = data[i];
         if(bank_acount <= 100){
