@@ -291,7 +291,7 @@ int main() {
         if(bank_acount <= 100){
           forced_sell_etf(bank_acount, etf_value)
             if (bank_acount == 0)
-              cout << "You ran out of money game over' << endl
+              cout << 'You ran out of money game over' << endl
               exit;
         }
         sell_etf(bank_acount, etf_value)
