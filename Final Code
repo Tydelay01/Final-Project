@@ -501,7 +501,7 @@ int main() {
               exit;
 	    }
         }
-        sell_etf(bank_acount, etf_value)
+        sell_etfs(bank_acount, etf_value);
         cout << std::setw(6) << s.month
                   << setw(12) << s.income
                   << setw(12) << s.expenses
