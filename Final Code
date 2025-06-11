@@ -112,7 +112,7 @@ return monthly_mortgage_payment;
 }
 
 /*************************************************************
-** Description:
+** Description: Function to check the probability of the user being employed.
 ** Function: 
 ** Preconditions:
 ** Postconditions
