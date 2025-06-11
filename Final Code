@@ -20,8 +20,6 @@ compound growth, invest bank balance into ETF, update home value, and record/sto
 
 using namespace std;
 
-srand(time(NULL));
-
 int get_value(char character) {
 	switch(character) {
 		case '0': return 1;
@@ -450,6 +448,7 @@ vector<FinancialState> runSimulation(double monthlyIncome, double monthlyIncome2
 ** Postconditions: Executes simulation and prints formatted results.
 *************************************************************/
 int main() {
+	srand(time(NULL));
     int decision;
     cout << "Would you like to rent or buy a house? (1 for rent, 2 to buy)" << endl;
     cin >> decision;
