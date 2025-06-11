@@ -1,3 +1,20 @@
+/************************************************************
+** Authors: Calvin Atkinson, John Hofenbredl, Ty Delay, and David Harker
+** Program: Financial Home and Rent Calculator
+** Description: Simulates the long term fincancial trajectory of an individual choosing between two housing options. 
+The two stategies associated are purchasing a home with a mortgage and other associated costs, and renting a home while 
+investing excess cash into a market-tracking EFT.
+** Inputs: Annual pre-tax income, Home Purchase price, downpayment ratio, loan term, mortgage annual interest, propterty
+tax rate, annual HOA cost, home appreciation rate, purchase tax rate, property sale tax, starting monthly rate, rent
+annual inflation, ETF annual return, simulation duration.
+** Outputs: Monthly the program must process gross income, deduct applicable housing costs, update ETF balance using 
+compound growth, invest bank balance into ETF, update home value, and record/stor the asset state.
+**************************************************************/
+
+
+
+
+
 
 // main simulator
 for (int year = 1; year <= 30; ++year) {
