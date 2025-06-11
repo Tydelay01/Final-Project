@@ -381,7 +381,7 @@ struct FinancialState {
 ** Preconditions:
 ** Postconditions
 *************************************************************/
-vector<FinancialState> runSimulation(double monthlyIncome, bool employment) {
+vector<FinancialState> runSimulation(double monthlyIncome, double monthlyIncome2, bool employment) {
     const int totalMonths = 360;  // 30 years x 12 months
     vector<FinancialState> history;
     history.reserve(totalMonths);
@@ -448,7 +448,7 @@ vector<FinancialState> runSimulation(double monthlyIncome, bool employment) {
 ** Postconditions
 *************************************************************/
 int main() {
-        bool employment = true
+        bool employment = true;
     	double home_price = get_home_price();
   	double down_payment_ratio = get_down_payment_ratio();
   	double down_payment = home_price * (down_payment_ratio/100);
