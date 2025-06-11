@@ -138,7 +138,7 @@ bool restore_emplyment(bool employment){
 
 double sell_etfs(double bank_acount, double etf_value){
   cout<< "Sell ETFs?" <<endl;
-  int repeat = 0
+  int repeat = 0;
   do{
   cout<< "Sell for how much money" <<endl;
   doouble ideal_money_gained;
