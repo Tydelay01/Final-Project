@@ -11,6 +11,13 @@ annual inflation, ETF annual return, simulation duration.
 compound growth, invest bank balance into ETF, update home value, and record/stor the asset state.
 **************************************************************/
 
+/*************************************************************
+** Description:
+** Function: 
+** Preconditions:
+** Postconditions
+*************************************************************/
+
 
 
 // main simulator
