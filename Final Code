@@ -473,7 +473,7 @@ int main() {
 	double monthlyIncome2 = monthlyIncome
 
     // Run the simulation
-    auto data = runSimulation(monthlyIncome);
+    auto data = runSimulation(monthlyIncome, monthlyIncome2, employment);
 
     // Print a header
     cout << left << setw(6) << "Month"
