@@ -3,7 +3,7 @@
 #include <iomanip>  // for formatting
 #include <cstdlib>
 #include <ctime>
-#using namespace std;
+using namespace std;
 
 
 double string_to_double(string s, double& ref) {
