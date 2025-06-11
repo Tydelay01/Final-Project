@@ -163,7 +163,7 @@ double sell_etfs(double bank_acount, double etf_value){
   cout<< "Sell for how much money" <<endl;
   double ideal_money_gained;
   cin >> ideal_money_gained;
-  if (ideal_money_gained <= etf_holdings);
+  if (ideal_money_gained <= etf_value);
     bank_acount += ideal_money_gained;
     etf_value -= ideal_money_gained;
     cout << "Youve gained $" << ideal_money_gained << endl;
