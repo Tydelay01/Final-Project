@@ -115,9 +115,12 @@ vector<FinancialState> runSimulation(double monthlyIncome) {
 
     // Initialize starting values
     check_empolyment(employmnet);
-    if (emplyment == False);
+    if (emplyment == False){
       monthly_income = 0;
+    }
     restore_emplyment(emplyment);
+    if (employment == True){
+      monthly_income = monthly_income2;
     double cash = monthlyIncome;  // start with month-0 income
     double homeVal = 0.0;
     double etfVal = 0.0;
