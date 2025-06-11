@@ -406,10 +406,10 @@ vector<FinancialState> runSimulation(double monthlyIncome, double monthlyIncome2
 
         // Income stays constant here; salary growth module could update monthlyIncome externally
 /*************************************************************
-** Description:
-** Function: 
-** Preconditions:
-** Postconditions
+** Description: Data structure to hold monthly financial metrics.
+** Function:    struct FinancialState
+** Preconditions: Fields should be assigned before use.
+** Postconditions: Represents a complete financial snapshot for one month.
 *************************************************************/
         state.income = monthlyIncome;
 
@@ -442,10 +442,10 @@ vector<FinancialState> runSimulation(double monthlyIncome, double monthlyIncome2
     return history;
 }
 /*************************************************************
-** Description:
-** Function: 
-** Preconditions:
-** Postconditions
+** Description: Entry point for the program; handles user choice and starts simulation.
+** Function:    main
+** Preconditions: None.
+** Postconditions: Executes simulation and prints formatted results.
 *************************************************************/
 int main() {
     int decision;
