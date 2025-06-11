@@ -337,7 +337,7 @@ int main() {
 	double property_tax_rate = get_property_tax_rate()/100;
 	double HOA = get_HOA();
 //	double home_appreciation_rate = get_home_appreciation_rate();
-//	double purchase_tax = home_price * (get_purchase_tax_rate()/100);
+        double purchase_tax = home_price * (get_purchase_tax_rate()/100);
   	double monthly_mortgage_payment = get_monthly_mortgage_payment(loan_amount, monthly_interest, loan_term);
   	double monthly_payment = monthly_mortgage_payment + ((property_tax_rate*home_price)/12) + HOA/12;
 	cout << monthly_payment << endl;
