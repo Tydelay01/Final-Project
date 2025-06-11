@@ -17,7 +17,6 @@ compound growth, invest bank balance into ETF, update home value, and record/sto
 #include <cstdlib>
 #include <ctime>
 #include <cmath>
-#include <crand>
 
 using namespace std;
 
