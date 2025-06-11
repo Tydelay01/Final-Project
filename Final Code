@@ -17,6 +17,7 @@ compound growth, invest bank balance into ETF, update home value, and record/sto
 #include <cstdlib>
 #include <ctime>
 #include <cmath>
+#include <crand>
 
 using namespace std;
 
@@ -475,7 +476,7 @@ int main() {
 	cout << "The purchase tax amount is: " << purchase_tax << endl;
 
     }
-
+	if (decision == 1) {
     // ❗ Call simulation regardless of rent/buy decision
     auto data = runSimulation(monthlyIncome, monthlyIncome2, employment);
 
@@ -509,6 +510,6 @@ int main() {
              << setw(12) << s.netWorth
              << endl;
     }
-
+}
     return 0;
 }
