@@ -219,8 +219,8 @@ vector<FinancialState> runSimulation(double monthlyIncome) {
     history.reserve(totalMonths);
 
     // Initialize starting values
-    check_empolyment(employmnet);
-    if (emplyment == False){
+    check_employment(employment);
+    if (employment == False){
       monthly_income = 0;
     }
     restore_emplyment(emplyment);
