@@ -64,6 +64,7 @@ vector<FinancialState> runSimulation(double monthlyIncome) {
     history.reserve(totalMonths);
 
     // Initialize starting values
+    
     double cash = monthlyIncome;  // start with month-0 income
     double homeVal = 0.0;
     double etfVal = 0.0;
