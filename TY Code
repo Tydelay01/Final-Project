@@ -1,18 +1,22 @@
-// Creating the 10% chance for unemplyment (yearly)
-
-if ((rand() % 100) < 10){
-  employment = false;
+bool check_employment(bool employment){
+  if (employment == true){
+    srand(time(0));
+    int x = rand()%100;
+    if (x >= 10){
+      employment = false;
+      cout << "You've lost your job. You are no longer making money" << endl;
+    }
+  }
 }
 
-// Monthly check for emplyment 
-
-if(employment == false){
-  i = rand()%6;
-  if (i > 6){
-    employment = frue
-  }
-  else{
-    return employment = false;
+bool restore_emplyment(bool employment){
+  if(employment == false){
+    srand(time(0));
+    int rand_num = rand() % 6;
+    if (rand_num < 3){
+      employment = true;
+      cout << "You've got a new job. You are making money again" <<endl;
+    }
   }
 }
 
@@ -59,4 +63,26 @@ double forced_sell_etf(){
   cin >> repeat
   }while (repeat = 1)
 }
+
+cout<< "Choose Renting and ETF or Morgage. 1 for Renting, 2 for Mortgage" << endl;
+  cin >> x;
+  if(x == 1){
+      RENTING
+  if (x == 2){
+      MORGAGE
+
+//this next section is the simulator, curently it runs 36 times
+
+
+  for(int i=0, i<simulation_duration, i++){
+    check_employment()
+
+// if employment if false then the income needs to be zero that month
+
+    MONTHLY OPPERATIONS
+    restore_employment()
+    if(bank_acount == 0){
+        cout << "Game over. You ran out of money" <<endl;
+        break;
+    }
 
