@@ -448,6 +448,7 @@ vector<FinancialState> runSimulation(double monthlyIncome, double monthlyIncome2
 ** Postconditions
 *************************************************************/
 int main() {
+	double bank_acount = 1000;
         bool employment = true;
     	double home_price = get_home_price();
   	double down_payment_ratio = get_down_payment_ratio();
