@@ -475,7 +475,7 @@ if (decision == 2) {
 	cout << loan_term << endl;
 	cout << ((property_tax_rate*home_price)/12) << endl;// Example usage: assume $5,000 monthly income (adjustable)
     	double monthlyIncome = 5000.0;
-	double monthlyIncome2 = monthlyIncome
+	double monthlyIncome2 = monthlyIncome;
 
     // Run the simulation
     auto data = runSimulation(monthlyIncome, monthlyIncome2, employment);
