@@ -100,10 +100,10 @@ return 1;
 } 
 
 /*************************************************************
-** Description:
-** Function: 
-** Preconditions:
-** Postconditions
+** Description: Return a numeric code representing character type (digit, sign, decimal point).
+** Function:    get_value
+** Preconditions: character is any valid ASCII character.
+** Postconditions: Returns 1 for digit, 2 for '-', 3 for '.', else 0.
 *************************************************************/
 double string_to_double(string s, double& ref) {
 	ref = stod(s);
