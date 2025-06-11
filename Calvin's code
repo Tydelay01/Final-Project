@@ -4,6 +4,8 @@
 #include<cstdlib>
 #include<ctime>
 
+
+
 // Placeholder namespaces for teammates' modules
 namespace HomeModule {
     // Process home ownership costs and updates
