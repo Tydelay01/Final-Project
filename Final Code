@@ -119,6 +119,7 @@ bool check_employment(bool employment){
       cout << "You've lost your job. You are no longer making money" << endl;
     }
   }
+    return employment;
 }
 
 bool restore_emplyment(bool employment){
@@ -130,6 +131,7 @@ bool restore_emplyment(bool employment){
       cout << "You've got a new job. You are making money again" <<endl;
     }
   }
+  return employment;
 }
 
 // ETF Specifics, you have to option to sell, but can also be forced to sell
