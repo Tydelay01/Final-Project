@@ -5,8 +5,29 @@
 #include<ctime>
 #using namespace std;
 
+// Employment Fuctions, that happen monthly
 
+bool check_employment(bool employment){
+  if (employment == true){
+    srand(time(0));
+    int x = rand()%100;
+    if (x >= 10){
+      employment = false;
+      cout << "You've lost your job. You are no longer making money" << endl;
+    }
+  }
+}
 
+bool restore_emplyment(bool employment){
+  if(employment == false){
+    srand(time(0));
+    int rand_num = rand() % 6;
+    if (rand_num < 3){
+      employment = true;
+      cout << "You've got a new job. You are making money again" <<endl;
+    }
+  }
+}
 
 // Placeholder namespaces for teammates' modules
 namespace HomeModule {
