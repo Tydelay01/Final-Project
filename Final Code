@@ -497,7 +497,7 @@ if (decision == 2) {
 ** Preconditions:
 ** Postconditions
 *************************************************************/
- if (decision == 2) {
+ if (decision == 1) {
 for (int i = 0; i < 12; ++i) {
         const auto &s = data[i];
         if(bank_acount <= 100){
