@@ -42,7 +42,7 @@ namespace InvestModule {
     // Process renting costs and investment updates
     // Parameters: current month index, reference to net cash flow and ETF value
     void processMonth(int month, double &netCash, double &etfValue) {
-        // Teammate will implement rent, investing surplus, returns, liquidity
+        // David will implement rent, investing surplus, returns, liquidity
     }
 }
 
