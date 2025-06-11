@@ -167,22 +167,22 @@ int main() {
     double home_price = get_home_price();
   	double down_payment_ratio = get_down_payment_ratio();
   	double down_payment = home_price * (down_payment_ratio/100);
-	  int loan_term = get_loan_term()*12;
-	  double loan_amount = home_price - down_payment;
-	  double monthly_interest = get_annual_interest()/1200;
-	  double property_tax_rate = get_property_tax_rate()/100;
-	  double HOA = get_HOA();
+	int loan_term = get_loan_term()*12;
+	double loan_amount = home_price - down_payment;
+	double monthly_interest = get_annual_interest()/1200;
+	double property_tax_rate = get_property_tax_rate()/100;
+	double HOA = get_HOA();
 //	double home_appreciation_rate = get_home_appreciation_rate();
 //	double purchase_tax = home_price * (get_purchase_tax_rate()/100);
   	double monthly_mortgage_payment = get_monthly_mortgage_payment(loan_amount, monthly_interest, loan_term);
   	double monthly_payment = monthly_mortgage_payment + ((property_tax_rate*home_price)/12) + HOA/12;
-	  cout << monthly_payment << endl;
-	  cout << home_price << endl;
+	cout << monthly_payment << endl;
+	cout << home_price << endl;
 	cout << down_payment << endl;
 	cout << loan_amount << endl;
 	cout << loan_term << endl;
 	cout << ((property_tax_rate*home_price)/12) << endl;// Example usage: assume $5,000 monthly income (adjustable)
-    double monthlyIncome = 5000.0;
+    	double monthlyIncome = 5000.0;
 
     // Run the simulation
     auto data = runSimulation(monthlyIncome);
