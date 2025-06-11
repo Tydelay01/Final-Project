@@ -1,0 +1,16 @@
+
+// main simulator
+for (int year = 1; year <= 30; ++year) {
+    for (int month = 1; month <= 12; ++month) {
+        // Monthly updates
+    }
+}
+
+double monthlyInterestRate = annualInterestRate / 12 / 100;
+double numberOfPayments = loanTermYears * 12;
+double monthlyPayment = loanAmount * monthlyInterestRate / 
+                        (1 - pow(1 + monthlyInterestRate, -numberOfPayments));
+
+
+double monthlyReturnRate = annualReturnRate / 12 / 100;
+investmentBalance *= (1 + monthlyReturnRate);
