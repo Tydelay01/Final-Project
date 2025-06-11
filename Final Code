@@ -472,6 +472,7 @@ int main() {
         double monthly_payment = monthly_mortgage_payment + ((property_tax_rate * home_price) / 12) + HOA / 12;
 
         cout << "Your monthly mortgage payment is: " << monthly_payment << endl;
+	cout << "The purchase tax amount is: " << purchase_tax << endl;
 
     }
 
