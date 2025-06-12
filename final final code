@@ -1,0 +1,274 @@
+/************************************************************
+** Authors: Calvin Atkinson, John Hofenbredl, Alexander Delay, and David Harker
+** Program: Financial Home and Rent Calculator
+** Description: Simulates the long term fincancial trajectory of an individual choosing between two housing options. 
+The two stategies associated are purchasing a home with a mortgage and other associated costs, and renting a home while 
+investing excess cash into a market-tracking EFT.
+** Inputs: Annual pre-tax income, Home Purchase price, downpayment ratio, loan term, mortgage annual interest, propterty
+tax rate, annual HOA cost, home appreciation rate, purchase tax rate, property sale tax, starting monthly rate, rent
+annual inflation, ETF annual return, simulation duration.
+** Outputs: Monthly the program must process gross income, deduct applicable housing costs, update ETF balance using 
+compound growth, invest bank balance into ETF, update home value, and record/stor the asset state.
+**************************************************************/
+
+
+#include <iostream> //basic
+#include <cmath> //for math
+#include <cstdlib> //basic
+#include <ctime> //for random
+#include <string> //for strings
+#include <cstdio> // basic
+
+using namespace std;
+
+
+/*************************************************************
+** Description: Utility functions to get numbers to use in calculations
+** Function:    Multiple (monthlyintrest, calcmortgage, applyfluctuation)
+** Preconditions: User inputs
+** Postconditions: New varibales
+*************************************************************/
+
+
+
+double monthlyInterest(double annualRate) {
+    return pow(1 + annualRate, 1.0 / 12) - 1;
+}
+
+double calcMortgage(double loanAmount, double monthlyRate, int months) {
+    return loanAmount * monthlyRate / (1 - pow(1 + monthlyRate, -months));
+}
+
+double applyFluctuation(double baseRate, double fluctuation = 0.02) {
+    double change = ((rand() % 2001) - 1000) / 1000.0 * fluctuation;
+    return baseRate * (1 + change);
+}
+
+
+/*************************************************************
+** Description: Randomly determine if employment is lost (10% chance).
+** Function:    check_employment
+** Preconditions: employment indicates current job status.
+** Postconditions: Returns false if job is lost, else original status.
+*************************************************************/
+
+bool checkUnemployment() {
+    return rand() % 100 < 10; // 10% chance annually
+}
+
+
+/*************************************************************
+** Description: (4 in in 6) Chances to get employment back.
+** Function:    jobsearchSuccess
+** Preconditions: employment indicates current job status.
+** Postconditions: Returns true if job is gained, else original status.
+*************************************************************/
+
+
+bool jobSearchSuccess() {
+    for (int i = 0; i < 4; ++i)
+        if (rand() % 6 + 1 > 3) return true;
+    return false;
+}
+
+double inputDouble(string prompt) {
+    double val;
+    cout << prompt;
+    cin >> val;
+    return val;
+}
+
+/*************************************************************
+** Description: Home ownership simulation
+** Function:    simulateHomeOwnership
+** Preconditions: Alot... income home price, down powment ratio, loan length, morgage rat,e property tax, hoa fees, appriciation rate, purchase tax
+** Postconditions: Print out yearly bank acount amount, home value, and net worth
+*************************************************************/
+
+
+
+// Monthly Simulation for Home Ownership
+void simulateHomeOwnership(
+    double income, double homePrice, double downPaymentRatio,
+    int loanTerm, double mortgageRate, double propertyTaxRate,
+    double annualHOA, double appreciationRate, double purchaseTaxRate,
+    double saleTaxRate) {
+    
+    const int months = 360;
+    double bank = 0;
+    double downPayment = homePrice * downPaymentRatio;
+    double loanAmount = homePrice - downPayment;
+    double monthlyRate = monthlyInterest(mortgageRate);
+    double mortgage = calcMortgage(loanAmount, monthlyRate, months);
+    double homeValue = homePrice;
+    double HOAmonthly = annualHOA / 12;
+    double propertyTaxMonthly = homePrice * propertyTaxRate / 12;
+    double ETF = 0;
+    double netWorthHistory[30];
+    bool isEmployed = true;
+    
+    bank -= homePrice * purchaseTaxRate; // Purchase tax
+
+    for (int month = 1; month <= months; ++month) {
+        if (month % 12 == 1 && checkUnemployment()) isEmployed = false;
+        if (!isEmployed && jobSearchSuccess()) isEmployed = true;
+
+        if (month % 12 == 1 && month != 1) income *= 1.05;
+
+        double monthlyIncome = isEmployed ? income / 12 : 0;
+        bank += monthlyIncome;
+        bank -= mortgage + HOAmonthly + propertyTaxMonthly;
+
+        homeValue *= 1 + applyFluctuation(appreciationRate) / 12;
+
+        if (bank < 0 && !isEmployed) {
+            printf("Game Over: Bankrupt while unemployed at month %d\n", month);
+            return;
+        }
+
+        if (month % 12 == 0) {
+            int year = month / 12;
+            double equity = homeValue - loanAmount;
+            double netWorth = equity + bank + ETF;
+            netWorthHistory[year - 1] = netWorth;
+            printf("Year %2d | Bank: $%.2f | Home: $%.2f | Net Worth: $%.2f\n",
+                   year, bank, homeValue, netWorth);
+        }
+    }
+
+    int roll = rand() % 6 + 1;
+    if (roll > 3) {
+        double gain = homeValue - homePrice;
+        if (gain > 250000)
+            bank += homeValue - gain * saleTaxRate;
+        else
+            bank += homeValue;
+    }
+
+    printf("Final Bank after home sale: $%.2f\n", bank);
+}
+
+
+/*************************************************************
+** Description: Renting Simulation
+** Function:    simulateRentingETF
+** Preconditions: Income, rent, inflation, return rate
+** Postconditions: Print out yearly bank acount amount, home value, and net worth
+*************************************************************/
+
+
+void simulateRentingETF(
+    double income, double rent, double inflationRate, double etfReturnRate) {
+
+    const int months = 360;
+    double bank = income * 0.2;
+    double ETF = income * 0.2;
+    double netWorthHistory[30];
+    bool isEmployed = true;
+    double monthlyIncome = income / 12;
+
+    for (int month = 1; month <= months; ++month) {
+        if (month % 12 == 1 && checkUnemployment()) isEmployed = false;
+        if (!isEmployed && jobSearchSuccess()) isEmployed = true;
+
+        // Apply annual salary increase and rent inflation
+        if (month % 12 == 1 && month != 1) {
+            income *= 1.05;
+            monthlyIncome = income / 12;
+            rent *= 1 + inflationRate;
+        }
+
+        double thisMonthIncome = isEmployed ? monthlyIncome : 0;
+        bank += thisMonthIncome;
+
+        // ✅ Subtract rent from bank FIRST
+        bank -= rent;
+
+        // Input contribution
+        double contribution = 0;
+        printf("Month %3d | Bank: $%.2f | ETF: $%.2f | Rent: $%.2f\n", month, bank, ETF, rent);
+        cout << "Enter ETF contribution this month: $";
+        cin >> contribution;
+
+        // Ensure contribution doesn't exceed what's available
+        if (contribution > bank) contribution = bank;
+
+        // Transfer from bank to ETF
+        bank -= contribution;
+        ETF += contribution;
+
+        // Apply monthly ETF return with fluctuation
+        ETF *= 1 + applyFluctuation(etfReturnRate) / 12;
+
+        // Emergency ETF liquidity check
+        if (bank < 500 && ETF > 0) {
+            double withdrawal = min(ETF, 1000.0);
+            ETF -= withdrawal * 1.005;
+            bank += withdrawal;
+            printf("Auto-sold $%.2f of ETF to cover expenses.\n", withdrawal);
+        }
+
+        // Check for bankruptcy
+        if (bank < 0 && !isEmployed) {
+            printf("Game Over: Bankrupt while unemployed at month %d\n", month);
+            return;
+        }
+
+        // Annual net worth snapshot
+        if (month % 12 == 0) {
+            int year = month / 12;
+            double netWorth = bank + ETF;
+            netWorthHistory[year - 1] = netWorth;
+            printf("Year %2d | Net Worth: $%.2f\n", year, netWorth);
+        }
+    }
+
+    // Final state
+    printf("Final Bank: $%.2f | Final ETF: $%.2f\n", bank, ETF);
+}
+
+
+/*************************************************************
+** Description: Main fuction that give the user two paths renting or owning
+** Function:    main
+** Preconditions: User choice for path, along with diffreing user inputs depending on path
+** Postconditions: Runs the own or rent simulations
+*************************************************************/
+
+
+
+
+int main() {
+    srand(time(0));
+    cout << "===== Financial Life Path Simulator =====\n";
+    cout << "Choose your path:\n1. Buy a Home\n2. Rent and Invest\nEnter 1 or 2: ";
+    int choice;
+    cin >> choice;
+
+    double income = inputDouble("Enter your annual pre-tax income: $");
+
+    if (choice == 1) {
+        double homePrice = inputDouble("Home purchase price: $");
+        double downPaymentRatio = inputDouble("Down payment ratio (e.g., 0.2): ");
+        int loanTerm = 30;
+        double mortgageRate = inputDouble("Mortgage annual interest rate (e.g., 0.05): ");
+        double propertyTaxRate = inputDouble("Property tax rate (e.g., 0.012): ");
+        double HOA = inputDouble("Annual HOA cost: $");
+        double appreciationRate = inputDouble("Home appreciation rate (e.g., 0.04): ");
+        double purchaseTax = inputDouble("One-time purchase tax rate (e.g., 0.015): ");
+        double saleTax = inputDouble("Capital gains tax rate on sale (e.g., 0.09): ");
+
+        simulateHomeOwnership(income, homePrice, downPaymentRatio,
+                              loanTerm, mortgageRate, propertyTaxRate,
+                              HOA, appreciationRate, purchaseTax, saleTax);
+    } else {
+        double rent = inputDouble("Starting monthly rent: $");
+        double inflationRate = inputDouble("Annual rent inflation rate (e.g., 0.02): ");
+        double etfRate = inputDouble("ETF annual return rate (e.g., 0.07): ");
+
+        simulateRentingETF(income, rent, inflationRate, etfRate);
+    }
+
+    cout << "===== Simulation Complete =====\n";
+    return 0;
+}
