@@ -1,12 +1,36 @@
-#include <iostream>
-#include <cmath>
-#include <cstdlib>
-#include <ctime>
-#include <string>
-#include <cstdio>
+/************************************************************
+** Authors: Calvin Atkinson, John Hofenbredl, Alexander Delay, and David Harker
+** Program: Financial Home and Rent Calculator
+** Description: Simulates the long term fincancial trajectory of an individual choosing between two housing options. 
+The two stategies associated are purchasing a home with a mortgage and other associated costs, and renting a home while 
+investing excess cash into a market-tracking EFT.
+** Inputs: Annual pre-tax income, Home Purchase price, downpayment ratio, loan term, mortgage annual interest, propterty
+tax rate, annual HOA cost, home appreciation rate, purchase tax rate, property sale tax, starting monthly rate, rent
+annual inflation, ETF annual return, simulation duration.
+** Outputs: Monthly the program must process gross income, deduct applicable housing costs, update ETF balance using 
+compound growth, invest bank balance into ETF, update home value, and record/stor the asset state.
+**************************************************************/
+
+
+#include <iostream> //basic
+#include <cmath> //for math
+#include <cstdlib> //basic
+#include <ctime> //for random
+#include <string> //for strings
+#include <cstdio> // basic
+
 using namespace std;
 
-// Utility Functions
+
+/*************************************************************
+** Description: Utility functions to get numbers to use in calculations
+** Function:    Multiple (monthlyintrest, calcmortgage, applyfluctuation)
+** Preconditions: User inputs
+** Postconditions: New varibales
+*************************************************************/
+
+
+
 double monthlyInterest(double annualRate) {
     return pow(1 + annualRate, 1.0 / 12) - 1;
 }
@@ -20,9 +44,26 @@ double applyFluctuation(double baseRate, double fluctuation = 0.02) {
     return baseRate * (1 + change);
 }
 
+
+/*************************************************************
+** Description: Randomly determine if employment is lost (10% chance).
+** Function:    check_employment
+** Preconditions: employment indicates current job status.
+** Postconditions: Returns false if job is lost, else original status.
+*************************************************************/
+
 bool checkUnemployment() {
     return rand() % 100 < 10; // 10% chance annually
 }
+
+
+/*************************************************************
+** Description: (4 in in 6) Chances to get employment back.
+** Function:    jobsearchSuccess
+** Preconditions: employment indicates current job status.
+** Postconditions: Returns true if job is gained, else original status.
+*************************************************************/
+
 
 bool jobSearchSuccess() {
     for (int i = 0; i < 4; ++i)
@@ -36,6 +77,15 @@ double inputDouble(string prompt) {
     cin >> val;
     return val;
 }
+
+/*************************************************************
+** Description: Home ownership simulation
+** Function:    simulateHomeOwnership
+** Preconditions: Alot... income home price, down powment ratio, loan length, morgage rat,e property tax, hoa fees, appriciation rate, purchase tax
+** Postconditions: Print out yearly bank acount amount, home value, and net worth
+*************************************************************/
+
+
 
 // Monthly Simulation for Home Ownership
 void simulateHomeOwnership(
@@ -98,7 +148,15 @@ void simulateHomeOwnership(
     printf("Final Bank after home sale: $%.2f\n", bank);
 }
 
-// Monthly Simulation for Renting and ETF
+
+/*************************************************************
+** Description: Renting Simulation
+** Function:    simulateRentingETF
+** Preconditions: Income, rent, inflation, return rate
+** Postconditions: Print out yearly bank acount amount, home value, and net worth
+*************************************************************/
+
+
 void simulateRentingETF(
     double income, double rent, double inflationRate, double etfReturnRate) {
 
@@ -169,7 +227,17 @@ void simulateRentingETF(
     printf("Final Bank: $%.2f | Final ETF: $%.2f\n", bank, ETF);
 }
 
-// Main Program
+
+/*************************************************************
+** Description: Main fuction that give the user two paths renting or owning
+** Function:    main
+** Preconditions: User choice for path, along with diffreing user inputs depending on path
+** Postconditions: Runs the own or rent simulations
+*************************************************************/
+
+
+
+
 int main() {
     srand(time(0));
     cout << "===== Financial Life Path Simulator =====\n";
